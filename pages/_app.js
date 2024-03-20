@@ -26,8 +26,7 @@ function MyApp({ Component, pageProps }) {
           process.env.NEXT_PUBLIC_INDUSTRY_ID
         }/${process.env.NEXT_PUBLIC_TEMPLATE_ID}/data/${"template_structure"}`
       );
-      const parsedData = JSON.parse(response.data.data[0].value);
-      setData(parsedData);
+      setData(response.data.data[0].value);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -42,8 +41,7 @@ function MyApp({ Component, pageProps }) {
           process.env.NEXT_PUBLIC_INDUSTRY_ID
         }/${process.env.NEXT_PUBLIC_TEMPLATE_ID}/data/${"nav_menu"}`
       );
-      const parsedData = JSON.parse(response.data.data[0].value);
-      setNavData(parsedData);
+      setNavData(response.data.data[0].value);
     } catch (error) {
       console.error("Error fetching data:", error);
     }

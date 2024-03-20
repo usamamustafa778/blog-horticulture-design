@@ -14,8 +14,8 @@ export default function PageGenerator({ pageData, page }) {
   const { pathname } = router;
   const routeSegment = pathname === "/" ? "home" : pathname.split("/").pop();
   const page_structure = useContext(DataContext);
-  const [sections, setSections] = useState();
 
+  const [sections, setSections] = useState();
   useEffect(() => {
     if (page_structure) {
       const page = page_structure?.find((item) => item.page === routeSegment);
@@ -31,10 +31,9 @@ export default function PageGenerator({ pageData, page }) {
     Story: Story,
   };
 
-  const parsedData = JSON.parse(pageData);
   const renderSection = (section) => {
     const Component = componentMapping[section.componentType];
-    return Component ? <Component data={parsedData} /> : null;
+    return Component ? <Component data={pageData} /> : null;
   };
 
   return (
