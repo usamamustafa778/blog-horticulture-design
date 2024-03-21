@@ -1,7 +1,6 @@
 import React from "react";
 import FullContainer from "../common/FullContainer";
 import Container from "../common/Container";
-import Image from "next/image";
 import { Button } from "../ui/button";
 
 export default function MostRecents({ data }) {

@@ -5,6 +5,11 @@ import axios from "axios";
 import "@/styles/globals.css";
 import Navbar from "@/components/containers/Navbar";
 import Footer from "@/components/containers/Footer";
+import { Roboto } from "next/font/google";
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const DataContext = React.createContext();
 
@@ -49,9 +54,11 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <DataContext.Provider value={data}>
-      <Navbar menu_list={navData} />
-      <Component {...pageProps} />
-      <Footer />
+      <div className={roboto.className}>
+        <Navbar menu_list={navData} />
+        <Component {...pageProps} />
+        <Footer />
+      </div>
     </DataContext.Provider>
   );
 }

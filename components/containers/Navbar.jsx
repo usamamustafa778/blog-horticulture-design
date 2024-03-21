@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Navbar({ menu_list }) {
   return (
-    <FullContainer className="bg-white shadow py-3">
+    <FullContainer className="bg-white shadow py-3 sticky top-0">
       <div className="flex items-center justify-between w-10/12">
         <Link href="/">
           <Image

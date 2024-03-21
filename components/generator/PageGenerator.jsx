@@ -47,7 +47,6 @@ export default function PageGenerator({ pageData, page }) {
       ) : (
         sections?.map((section, index) => (
           <div key={index} className="w-full">
-            {/* {pathname.split("/").pop()} */}
             {section?.enabled && renderSection(section)}
           </div>
         ))
