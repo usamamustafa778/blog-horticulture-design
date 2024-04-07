@@ -2,9 +2,33 @@ import React, { useEffect, useState } from "react";
 import FullContainer from "../common/FullContainer";
 import Container from "../common/Container";
 import { Button } from "../ui/button";
+import axios from "axios";
 
-export default function Banner({ data }) {
-  const bannerData = data?.find((item) => item.title === "banner");
+export default function Banner() {
+  const [bannerData, setBannerData] = useState({});
+  const [bannerImage, setBannerImage] = useState("");
+  const fetchBannerData = async () => {
+    try {
+      const response = await axios.get(
+        `${
+          process.env.NEXT_PUBLIC_SITE_MANAGER
+        }/public/industry_template_data/${
+          process.env.NEXT_PUBLIC_INDUSTRY_ID
+        }/${process.env.NEXT_PUBLIC_TEMPLATE_ID}/data/${"Banner"}`
+      );
+      setBannerData(response.data.data[0].value);
+      const file = response?.data.data[0].file_name;
+      setBannerImage(
+        `${process.env.NEXT_PUBLIC_SITE_MANAGER}/images/industry_template_images/${process.env.NEXT_PUBLIC_TEMPLATE_ID}/${file}`
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBannerData();
+  }, []);
 
   return (
     <FullContainer
@@ -29,8 +53,8 @@ export default function Banner({ data }) {
               {bannerData?.tagLine || "Default Tag Line"}
             </p>
           )}
-          {bannerData?.button && (
-            <Button>{bannerData?.button?.text || "Default Button Text"}</Button>
+          {bannerData?.buttonText && (
+            <Button>{bannerData?.buttonText || "Default Button Text"}</Button>
           )}
         </div>
       </Container>

@@ -25,7 +25,7 @@ const expert_insights = {
 
 export default function ExpertInsights() {
   return (
-    <FullContainer className="text-center">
+    <FullContainer className="text-center py-16">
       <Container>
         <h2 className="text-5xl font-extrabold text-gray-700">
           {expert_insights.title}

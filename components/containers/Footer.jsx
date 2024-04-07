@@ -1,23 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FullContainer from "../common/FullContainer";
 import Container from "../common/Container";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 export default function Footer() {
-  const footerLinks = [
-    "About & Contact Details",
-    "Terms & Conditions",
-    "Privacy Policy",
-    "Cookie Policy",
-    "Complaints",
-    "Sitemap",
-    "Advertising",
-  ];
+  const [footerData, setFooterData] = useState({});
+  const fetchFooterData = async () => {
+    try {
+      const response = await axios.get(
+        `${
+          process.env.NEXT_PUBLIC_SITE_MANAGER
+        }/public/industry_template_data/${
+          process.env.NEXT_PUBLIC_INDUSTRY_ID
+        }/${process.env.NEXT_PUBLIC_TEMPLATE_ID}/data/${"Footer"}`
+      );
+      setFooterData(response.data.data[0].value);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-  const [copyright, setCopyright] = useState(
-    "© 2024 Horticulture Design Co | Designed by P1 SEO Agency"
-  );
+  useEffect(() => {
+    fetchFooterData();
+  }, []);
 
   return (
     <FullContainer className="py-16 bg-gray-100 mt-16">
@@ -32,9 +39,9 @@ export default function Footer() {
               className="mt-1"
             />
           </Link>
-          <p className="mt-5">{copyright}</p>
+          <p className="mt-5">{footerData?.copyRight}</p>
           <div className="flex items-center flex-wrap gap-5 mt-5 lg:gap-10">
-            {footerLinks.map((item, index) => (
+            {footerData?.footerLinks?.map((item, index) => (
               <p key={index}>{item}</p>
             ))}
           </div>
