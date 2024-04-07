@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }) {
           process.env.NEXT_PUBLIC_SITE_MANAGER
         }/public/industry_template_data/${
           process.env.NEXT_PUBLIC_INDUSTRY_ID
-        }/${process.env.NEXT_PUBLIC_TEMPLATE_ID}/data/${"nav_menu"}`
+        }/${process.env.NEXT_PUBLIC_TEMPLATE_ID}/data/${"NavMenu"}`
       );
       setNavData(response.data.data[0].value);
     } catch (error) {
